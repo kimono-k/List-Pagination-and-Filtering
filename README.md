@@ -1,2 +1,2 @@
 # techdegree-project-2
-# In this project I'm working with list pagination. I will 54 student names in my list. The page needs to look clean so I want to show 10 names at a time and including a navigation system if you want to see the next 10 names.
+# It's going to be fun... I hope.
