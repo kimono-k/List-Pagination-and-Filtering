@@ -16,7 +16,9 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-
+const listItemElements = document.getElementsByClassName('student-item cf')
+console.log(listItemElements);
+const itemsToShowOnEachPage = 10;
 
 
 
@@ -34,9 +36,6 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-
-
-
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
