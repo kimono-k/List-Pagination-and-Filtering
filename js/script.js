@@ -78,11 +78,12 @@ function appendPageLinks(list) {
       let pageNumbers = event.target.textContent;
 
       showPage(listItems, pageNumbers);
-      let anchorTags = document.querySelector('a');
+      let anchorTags = document.querySelectorAll('a');
 
       for (let i = 0; i < anchorTags.length; i++) {
          anchortags[i].className = 'none';
       }
+      
       pageButtons.className = 'active';
          
    });
