@@ -73,7 +73,7 @@ function appendPageLinks(list) {
       li.appendChild(a);
    }
 
-   ul.addEventListener('click', (event) => { // Maybe it's the <a> tag but I'll figure it out later.
+   ul.addEventListener('click', (event) => {
       let pageButtons = event.target;
       let pageNumbers = event.target.textContent;
 
@@ -81,11 +81,9 @@ function appendPageLinks(list) {
       let anchorTags = document.querySelectorAll('a');
 
       for (let i = 0; i < anchorTags.length; i++) {
-         anchortags[i].className = 'none';
+         anchorTags[i].className = 'none';
       }
-      
-      pageButtons.className = 'active';
-         
+      pageButtons.className = 'active'; // If I click on a page button it's not becoming blue, therefore the class active isn't working.
    });
 
 }
