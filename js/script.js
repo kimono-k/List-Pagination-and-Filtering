@@ -16,11 +16,8 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-const listItemElements = document.getElementsByClassName('student-item cf')
-console.log(listItemElements);
-const itemsToShowOnEachPage = 10;
-
-
+const allListItems = document.querySelectorAll('li');
+const itemsPerPage = 10;
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -37,13 +34,61 @@ const itemsToShowOnEachPage = 10;
        "invoke" the function 
 ***/
 
+function showPage(list, page) {
+   let startIndex = (page * itemsPerPage) - itemsPerPage;
+   let endIndex = (page * itemsPerPage);
+
+   for (let i = 0; i < list.length; i++) {
+      if (i >= startIndex && i < endIndex) {
+         list[i].style.display = 'block';
+      } else {
+         list[i].style.display = 'none';
+      }
+   }
+}
+
+showPage(allListItems, 1);
+
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 
+function appendPageLinks(list) {
+   const numberOfPages = list.length / itemsPerPage;
+   const div = document.querySelector('div.page');
+   const paginationDiv = document.createElement('div');
+   paginationDiv.className('pagination');
+   div.appendChild(paginationDiv);
+   const ul = document.createElement('ul');
+   paginationDiv.appendChild(ul);
 
+   for (let i = 0; i < numberOfPages; i++) {
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+      a.textContent = i;
+      
+      if (i === 0) {
+         a.className('active');
+      }
 
+      a.href = "#";
+      ul.appendChild(li);
+      li.appendChild(a);
+   }
+   // Add a “click” event listener to each A element. A loop can be helpful here.
+   let anchorElements = document.querySelectorAll('a');
+   anchorElements.addEventListener ('click', (e) => {
+      for (let i = 0; i < anchorElements.length; i++) {
+         anchorElements[i].className = 'none'; 
+      }
+      anchorElements = "active";
+   });
+}
+
+showPage(listItems, 1);
+appendPageLinks(listItems);
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
+
