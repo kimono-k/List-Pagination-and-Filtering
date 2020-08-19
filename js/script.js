@@ -16,8 +16,9 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-const allListItems = document.querySelectorAll('li');
-const itemsPerPage = 10;
+
+const listItems = document.querySelectorAll('li');
+const studentListOfTen = 10;
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -35,8 +36,8 @@ const itemsPerPage = 10;
 ***/
 
 function showPage(list, page) {
-   let startIndex = (page * itemsPerPage) - itemsPerPage;
-   let endIndex = (page * itemsPerPage);
+   let startIndex = (page * studentListOfTen) - studentListOfTen;
+   let endIndex = (page * studentListOfTen);
 
    for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
@@ -47,48 +48,50 @@ function showPage(list, page) {
    }
 }
 
-showPage(allListItems, 1);
-
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 
 function appendPageLinks(list) {
-   const numberOfPages = list.length / itemsPerPage;
-   const div = document.querySelector('div.page');
-   const paginationDiv = document.createElement('div');
-   paginationDiv.className('pagination');
-   div.appendChild(paginationDiv);
-   const ul = document.createElement('ul');
+   let numberOfPages = (list.length / studentListOfTen);
+   let paginationDiv = document.createElement('div');
+   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+   paginationDiv.classList.add('pagination');
+   let pageDiv = document.querySelector('div.page')
+   pageDiv.appendChild(paginationDiv);
+   let ul = document.createElement('ul');
    paginationDiv.appendChild(ul);
 
-   for (let i = 0; i < numberOfPages; i++) {
+   for (let i = 1; i < numberOfPages + 1; i++) {
       let li = document.createElement('li');
       let a = document.createElement('a');
       a.textContent = i;
-      
-      if (i === 0) {
-         a.className('active');
-      }
-
       a.href = "#";
+
       ul.appendChild(li);
       li.appendChild(a);
    }
-   // Add a “click” event listener to each A element. A loop can be helpful here.
-   let anchorElements = document.querySelectorAll('a');
-   anchorElements.addEventListener ('click', (e) => {
-      for (let i = 0; i < anchorElements.length; i++) {
-         anchorElements[i].className = 'none'; 
+
+   ul.addEventListener('click', (event) => { // Maybe it's the <a> tag but I'll figure it out later.
+      let pageButtons = event.target;
+      let pageNumbers = event.target.textContent;
+
+      showPage(listItems, pageNumbers);
+      let anchorTags = document.querySelector('a');
+
+      for (let i = 0; i < anchorTags.length; i++) {
+         anchortags[i].className = 'none';
       }
-      anchorElements = "active";
+      pageButtons.className = 'active';
+         
    });
+
 }
 
 showPage(listItems, 1);
 appendPageLinks(listItems);
 
 
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
 
+// Remember to delete the comments that came with this file, and replace them with your own code comments.
